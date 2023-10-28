@@ -1,15 +1,19 @@
 'use client'
-import ProductForm from '@/components/product-form'
-import toast, { Toaster } from 'react-hot-toast'
-import Title from '@/components/title'
-import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
+import ProductForm from '@/components/product-form'
+import Title from '@/components/title'
 import { type Product } from '@/types'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function Edit () {
   const [product, setProduct] = useState<Product[]>([])
   const productData = product[0]
   const { id }: { id: string } = useParams()
+
+  useEffect(() => {
+    document.title = 'Admin Mohana - Editar producto'
+  }, [])
 
   useEffect(() => {
     fetch(`http://localhost:5555/products/${id}`)

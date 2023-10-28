@@ -1,6 +1,6 @@
-import NavbarAdmin from '@/components/navbar-admin'
 import './globals.css'
 import type { Metadata } from 'next'
+import NavbarAdmin from '@/components/navbar'
 
 export const metadata: Metadata = {
   title: 'Admin Mohana',

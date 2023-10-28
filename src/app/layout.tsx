@@ -1,18 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Jost, Poppins, Libre_Franklin } from 'next/font/google'
-
-const franklin = Libre_Franklin({
-  weight: ['300', '500', '700', '900'],
-  subsets: ['latin'],
-  variable: '--franklin'
-})
-
-const jost = Jost({
-  weight: ['500', '700', '900'],
-  subsets: ['latin'],
-  variable: '--jost'
-})
+import { Poppins } from 'next/font/google'
+import { ProductsProvider } from '@/context/products-context'
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -32,7 +21,9 @@ export default function RootLayout ({
 }) {
   return (
     <html lang="es">
-      <body className={`${jost.variable} ${poppins.variable} ${franklin.variable}`}>{children}</body>
+      <ProductsProvider>
+        <body className={`${poppins.variable}`}>{children}</body>
+      </ProductsProvider>
     </html>
   )
 }

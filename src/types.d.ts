@@ -8,11 +8,11 @@ export interface Product {
   quantity: number
 }
 
-interface State {
-  cart: Product[]
-}
-
-interface Actions {
-  addToCart: (product: Product) => void
-  removeAll: () => void
+export interface ContextData {
+  products: Product[]
+  loading: boolean
+  error: Error | null
+  addProduct: (product: Product) => void
+  updateProduct: (id: string, product: Product) => void
+  deleteProduct: (id: string) => void
 }

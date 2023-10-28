@@ -1,6 +1,6 @@
 'use client'
 import ProductCardFront from '@/components/product-card-front'
-import useProducts from '@/hooks/use-products'
+import { useProducts } from '@/context/products-context'
 
 export default function ProductsContainer () {
   const { products } = useProducts()

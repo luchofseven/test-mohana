@@ -1,7 +1,7 @@
-import Hero from '@/components/hero'
-import Navbar from '@/components/navbar'
+import Hero from '@/components/hero-front'
+import Navbar from '@/components/navbar-front'
 import ProductsContainer from '../containers/products'
-import Footer from '@/components/footer'
+import Footer from '@/components/footer-front'
 
 export default function Home () {
   return (

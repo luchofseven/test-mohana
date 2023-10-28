@@ -1,11 +1,11 @@
+'use client'
 import Link from 'next/link'
+import { useProducts } from '@/context/products-context'
 import { type Product } from '@/types'
-import useProducts from '@/hooks/use-products'
 
 export default function ProductCard ({ product }: { product: Product }) {
   const { id, name, image, price, quantity } = product
   const { deleteProduct } = useProducts()
-
   if (id == null) throw new Error('id no encotrada.')
 
   return (

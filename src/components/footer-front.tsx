@@ -1,5 +1,5 @@
-import { AtIcon, InstagramIcon, PhoneIcon } from '@/icons/icons'
 import Link from 'next/link'
+import { AtIcon, InstagramIcon, PhoneIcon } from '@/icons/icons'
 
 export default function Footer () {
   return (

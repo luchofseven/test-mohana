@@ -1,8 +1,8 @@
 'use client'
-import { type Product } from '@/types'
 import { useState, useEffect } from 'react'
-import useProducts from '@/hooks/use-products'
 import { useRouter } from 'next/navigation'
+import { useProducts } from '@/context/products-context'
+import { type Product } from '@/types'
 
 export default function ProductForm ({ mode, productData }: { mode: string, productData?: Product }) {
   const [name, setName] = useState('')
@@ -103,12 +103,26 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             required
             className="rounded-lg text-bgMohana h-10 w-full text-center"
           >
-            <option value="">- - - - - - - - - -</option>
-            <option value="Remeras">Remeras</option>
-            <option value="Jeans">Jeans</option>
+            <option value="">- - - - - - - - - - - - - - - - -</option>
+            <option value="Buzos">Blazers</option>
             <option value="Blusas">Blusas</option>
-            <option value="Camisas">Camisas</option>
+            <option value="Buzos">Bodys</option>
             <option value="Buzos">Buzos</option>
+            <option value="Buzos">Calzas</option>
+            <option value="Camisas">Camisas</option>
+            <option value="Buzos">Camperas</option>
+            <option value="Buzos">Corsets</option>
+            <option value="Jeans">Jeans</option>
+            <option value="Buzos">Joggers</option>
+            <option value="Buzos">Medias</option>
+            <option value="Buzos">Musculosas</option>
+            <option value="Buzos">Poleras</option>
+            <option value="Buzos">Polleras</option>
+            <option value="Remeras">Remeras</option>
+            <option value="Buzos">Sastreros</option>
+            <option value="Buzos">Shorts</option>
+            <option value="Buzos">Sweaters</option>
+            <option value="Buzos">Tops</option>
           </select>
         </label>
 
@@ -123,7 +137,7 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             id="image"
             value={image}
             onChange={(e) => { setImage(e.target.value) }}
-            placeholder="https://example.com/product/remera-manga-corta.jpg"
+            placeholder="https://example.com/product/remera-mangas-princesa.jpg"
             className="rounded-lg text-bgMohana h-10 w-full text-center"
           />
         </label>

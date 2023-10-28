@@ -1,10 +1,26 @@
 'use client'
-import { useState, useEffect } from 'react'
+import {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  type ReactNode
+} from 'react'
+import { type Product, type ContextData } from '@/types'
 import toast from 'react-hot-toast'
-import { type Product } from '@/types'
 
-export default function useProducts () {
-  const [products, setProducts] = useState<Product[] | null>(null)
+export const ProductsContext = createContext<ContextData | undefined>(
+  undefined
+)
+
+export const useProducts = () => {
+  const context = useContext(ProductsContext)
+  if (context == null) { throw new Error('useProducts must used within a provider.') }
+  return context
+}
+
+export const ProductsProvider = ({ children }: { children: ReactNode }) => {
+  const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<Error | null>(null)
 
@@ -14,20 +30,19 @@ export default function useProducts () {
 
   const getProducts = () => {
     fetch('http://localhost:5555/products')
-      .then(async response => {
+      .then(async (response) => {
         if (!response.ok) {
           throw new Error('Error en la solicitud.')
         }
 
         return await response.json()
       })
-      .then(data => {
+      .then((data) => {
         setProducts(data)
-        console.log('GET', data)
       })
-      .catch(err => {
-        setError(err)
-        toast.error(`${err}`)
+      .catch((error) => {
+        setError(error)
+        toast.error(error.message)
       })
       .finally(() => {
         setLoading(false)
@@ -52,9 +67,14 @@ export default function useProducts () {
       })
       .then(() => {
         toast.success('¡Producto agregado con éxito!')
+        getProducts()
       })
       .catch((error) => {
+        setError(error)
         toast.error(error.message)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
@@ -76,9 +96,14 @@ export default function useProducts () {
       })
       .then(() => {
         toast.success('¡Producto actualizado con éxito!')
+        getProducts()
       })
       .catch((error) => {
+        setError(error)
         toast.error(error.message)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
@@ -99,20 +124,30 @@ export default function useProducts () {
         return await response.json()
       })
       .then(() => {
-        getProducts()
         toast.success('¡Producto eliminado con éxito!')
+        getProducts()
       })
       .catch((error) => {
+        setError(error)
         toast.error(error.message)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
-  return {
-    products,
-    loading,
-    error,
-    addProduct,
-    updateProduct,
-    deleteProduct
-  }
+  return (
+    <ProductsContext.Provider
+      value={{
+        products,
+        loading,
+        error,
+        addProduct,
+        updateProduct,
+        deleteProduct
+      }}
+    >
+      {children}
+    </ProductsContext.Provider>
+  )
 }

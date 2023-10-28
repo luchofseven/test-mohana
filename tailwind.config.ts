@@ -9,9 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        jost: ['var(--franklin)'],
-        poppins: ['var(--poppins)'],
-        franklin: ['var(--franklin)']
+        poppins: ['var(--poppins)']
       },
       colors: {
         mohana: '#fd07c4',

@@ -1,77 +1,37 @@
-'use client'
-import { useState } from 'react'
-import { OpenIcon, CloseIcon, CartIcon } from '@/icons/icons'
 import Link from 'next/link'
-import { useCart } from '@/context/cart-context'
+import { BoardIcon, PlusIcon } from '@/icons/icons'
 
-export default function Navbar () {
-  const [menu, setMenu] = useState(false)
-  const { cart } = useCart()
-
-  const handleClick = () => {
-    setMenu(!menu)
-  }
-
+export default function NavbarAdmin () {
   return (
-    <>
-      <header className="bg-white text-bgMohana w-full h-20 fixed top-0 left-0 right-0 flex justify-between items-center px-6 border-b border-bgMohana/20">
-        <button onClick={handleClick}>
-          {menu ? <CloseIcon /> : <OpenIcon />}
-        </button>
-        <picture>
-          <Link
-            href="/"
-            onClick={() => {
-              setMenu(false)
-            }}
-          >
-            <img
-              src="/logo-sticker.png"
-              alt="Mohana Logo"
-              className="w-[50px] h-[50px]"
-            />
+    <header className="bg-white text-bgMohana font-poppins w-[15%] fixed top-0 left-0 bottom-0">
+      <section>
+        <h1 className="text-3xl font-bold text-center mt-4 lg:transition lg:hover:scale-105">
+          <Link href='/admin'>
+            ADMIN <span className="text-mohana block">MOHANA</span>
           </Link>
-        </picture>
-          <Link href="/cart" className='relative flex justify-center items-center'>
-            <CartIcon />
-            <span className='font-poppins absolute left-6'>{cart.length}</span>
-          </Link>
-      </header>
-      <nav
-        className={`bg-white/50 backdrop-blur-md fixed top-20 bottom-0 left-0 right-0 flex flex-col items-center font-poppins ${
-          menu ? 'translate-y-[0]' : 'translate-y-[100%]'
-        } transition duration-500`}
-      >
-        <div className="flex flex-col items-center mt-10 gap-12 w-full h-full overflow-y-auto text-bgMohana">
+        </h1>
+      </section>
+      <section className="mt-4 w-full flex flex-col items-center">
+        <h2 className="font-bold mb-8 text-sm text-center">
+          ¿Qué acción deseas realizar?
+        </h2>
+        <article className="w-full flex flex-col gap-2 justify-center items-center">
           <Link
-            href="/"
-            className="w-full text-center font-bold text-sm"
-            onClick={() => {
-              setMenu(false)
-            }}
+            href="/admin/products"
+            className="bg-mohana text-white font-bold text-sm w-full h-[50px] flex justify-center items-center gap-2 transition hover:bg-mohana/50"
           >
-            INICIO
+            <BoardIcon />
+            Ver productos
           </Link>
           <Link
-            href="/products"
-            className="w-full text-center font-bold text-sm"
-            onClick={() => {
-              setMenu(false)
-            }}
+            href="/admin/products/new"
+            className="bg-mohana text-white font-bold text-sm w-full h-[50px] flex justify-center items-center gap-2 transition hover:bg-mohana/50"
           >
-            PRODUCTOS
+            <PlusIcon />
+            Agregar nuevo producto
           </Link>
-          <Link
-            href="/contact"
-            className="w-full text-center font-bold text-sm"
-            onClick={() => {
-              setMenu(false)
-            }}
-          >
-            CONTACTO
-          </Link>
-        </div>
-      </nav>
-    </>
+        </article>
+      </section>
+    </header>
   )
 }
