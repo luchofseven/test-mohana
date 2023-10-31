@@ -6,10 +6,10 @@ import {
   useContext,
   type ReactNode
 } from 'react'
-import { type Product, type ContextData } from '@/types'
+import { type Product, type ContextProductData } from '@/types'
 import toast from 'react-hot-toast'
 
-export const ProductsContext = createContext<ContextData | undefined>(
+export const ProductsContext = createContext<ContextProductData | undefined>(
   undefined
 )
 

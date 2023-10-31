@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { ProductsProvider } from '@/context/products-context'
+import { FilterProvider } from '@/context/category-context'
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -22,7 +23,9 @@ export default function RootLayout ({
   return (
     <html lang="es">
       <ProductsProvider>
-        <body className={`${poppins.variable}`}>{children}</body>
+        <FilterProvider>
+          <body className={`${poppins.variable}`}>{children}</body>
+        </FilterProvider>
       </ProductsProvider>
     </html>
   )

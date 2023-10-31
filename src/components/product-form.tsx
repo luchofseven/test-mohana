@@ -2,9 +2,16 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useProducts } from '@/context/products-context'
+import { CATEGORYS } from '@/const/categorys'
 import { type Product } from '@/types'
 
-export default function ProductForm ({ mode, productData }: { mode: string, productData?: Product }) {
+export default function ProductForm ({
+  mode,
+  productData
+}: {
+  mode: string
+  productData?: Product
+}) {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
@@ -67,7 +74,9 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             name="name"
             id="name"
             value={name}
-            onChange={(e) => { setName(e.target.value) }}
+            onChange={(e) => {
+              setName(e.target.value)
+            }}
             placeholder="Remera mangas princesa"
             required
             className="rounded-lg text-bgMohana h-10 w-full text-center"
@@ -83,7 +92,9 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             name="description"
             id="description"
             value={description}
-            onChange={(e) => { setDescription(e.target.value) }}
+            onChange={(e) => {
+              setDescription(e.target.value)
+            }}
             placeholder="Remera manga corta con detalles bordados."
             required
             className="rounded-lg text-bgMohana px-2 h-10 w-full text-start [text-wrap:balance] min-h-[150px] resize-none placeholder:text-center"
@@ -99,30 +110,18 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             name="category"
             id="category"
             value={category}
-            onChange={(e) => { setCategory(e.target.value) }}
+            onChange={(e) => {
+              setCategory(e.target.value)
+            }}
             required
             className="rounded-lg text-bgMohana h-10 w-full text-center"
           >
             <option value="">- - - - - - - - - - - - - - - - -</option>
-            <option value="Buzos">Blazers</option>
-            <option value="Blusas">Blusas</option>
-            <option value="Buzos">Bodys</option>
-            <option value="Buzos">Buzos</option>
-            <option value="Buzos">Calzas</option>
-            <option value="Camisas">Camisas</option>
-            <option value="Buzos">Camperas</option>
-            <option value="Buzos">Corsets</option>
-            <option value="Jeans">Jeans</option>
-            <option value="Buzos">Joggers</option>
-            <option value="Buzos">Medias</option>
-            <option value="Buzos">Musculosas</option>
-            <option value="Buzos">Poleras</option>
-            <option value="Buzos">Polleras</option>
-            <option value="Remeras">Remeras</option>
-            <option value="Buzos">Sastreros</option>
-            <option value="Buzos">Shorts</option>
-            <option value="Buzos">Sweaters</option>
-            <option value="Buzos">Tops</option>
+            {CATEGORYS.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
           </select>
         </label>
 
@@ -136,7 +135,9 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             name="image"
             id="image"
             value={image}
-            onChange={(e) => { setImage(e.target.value) }}
+            onChange={(e) => {
+              setImage(e.target.value)
+            }}
             placeholder="https://example.com/product/remera-mangas-princesa.jpg"
             className="rounded-lg text-bgMohana h-10 w-full text-center"
           />
@@ -152,7 +153,9 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             type="number"
             id="price"
             value={price}
-            onChange={(e) => { setPrice(Number(e.target.value)) }}
+            onChange={(e) => {
+              setPrice(Number(e.target.value))
+            }}
             min={0}
             required
             className="rounded-lg text-bgMohana h-10 w-full text-center"
@@ -169,7 +172,9 @@ export default function ProductForm ({ mode, productData }: { mode: string, prod
             type="number"
             id="quantity"
             value={quantity}
-            onChange={(e) => { setQuantity(Number(e.target.value)) }}
+            onChange={(e) => {
+              setQuantity(Number(e.target.value))
+            }}
             min={1}
             required
             className="rounded-lg text-bgMohana h-10 w-full text-center"
